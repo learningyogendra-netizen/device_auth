@@ -1,0 +1,17 @@
+{
+  "name": "device_auth",
+  "version": "0.1.0",
+  "description": "authorization package for Node.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Yogendra Prajapati",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/deviceAuth.ts"
+  },
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

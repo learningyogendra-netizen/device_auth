@@ -13,5 +13,8 @@
   "dependencies": {
     "bcrypt": "^5.1.0",
     "jsonwebtoken": "^9.0.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }

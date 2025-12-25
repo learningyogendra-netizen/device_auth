@@ -5,6 +5,7 @@ export interface PasswordRulesConfig {
   minLength: number;
   requireNumbers: boolean;
   requireSpecialChars: boolean;
+  saltRounds: number;
 }
 
 export interface TokenConfig {
@@ -28,6 +29,7 @@ export const defaultConfig: DeviceAuthConfig = {
     minLength: 8,
     requireNumbers: true,
     requireSpecialChars: false,
+    saltRounds: 10,
   },
   token: {
     accessTokenTtl: '15m',

@@ -1,8 +1,7 @@
 import { deviceAuth } from '../deviceAuth';
-import { AuthService, type LoginResult } from '../core/auth.service';
+import type { LoginResult } from '../core/auth.service';
 import type { AdapterUser } from '../adapters/base.adapter';
-import { PasswordService } from '../core/password.service';
-import { TokenService } from '../core/token.service';
+import { createAuthService } from '../factories/auth-service.factory';
 
 export type SessionsController = (email: string, password: string) => Promise<LoginResult>;
 
@@ -16,35 +15,6 @@ const sanitizeLoginResult = (result: LoginResult): LoginResult => {
     ...result,
     user: sanitizeUser(result.user),
   };
-};
-
-const createAuthService = (): AuthService => {
-  const config = deviceAuth.config;
-  const adapter = deviceAuth.adapter;
-
-  const passwordService = new PasswordService({
-    saltRounds: config.password.saltRounds,
-  });
-
-  const secret = process.env.DEVICE_AUTH_JWT_SECRET;
-  if (!secret) {
-    throw new Error(
-      'DEVICE_AUTH_JWT_SECRET environment variable is required for JWT authentication. Set DEVICE_AUTH_JWT_SECRET to a strong, random secret in your environment configuration.',
-    );
-  }
-
-  const tokenService = new TokenService({
-    secret,
-    expiresIn: config.token.accessTokenTtl,
-  });
-
-  return new AuthService({
-    adapter,
-    config,
-    passwordService,
-    tokenService,
-    runHooks: deviceAuth.runHooks.bind(deviceAuth),
-  });
 };
 
 const defaultSessionsController: SessionsController = async (email, password) => {

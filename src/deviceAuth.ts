@@ -1,12 +1,6 @@
 import type { DeviceAuthConfig } from './config';
 import { mergeConfig } from './config';
-
-// Placeholder types for later phases
-export interface Adapter {
-  // Will be refined in Phase 2 (base.adapter)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  [key: string]: any;
-}
+import type { BaseAdapter } from './adapters/base.adapter';
 
 export type HookName =
   | 'beforeRegister'
@@ -24,7 +18,7 @@ export interface ControllerOverrides {
 
 class DeviceAuthCore {
   private _config: DeviceAuthConfig;
-  private _adapter: Adapter | null = null;
+  private _adapter: BaseAdapter | null = null;
   private _hooks: Partial<Record<HookName, HookFn[]>> = {};
   private _controllerOverrides: ControllerOverrides = {};
 
@@ -39,7 +33,7 @@ class DeviceAuthCore {
   }
 
   /** Register the database adapter (Prisma, Mongoose, etc.). */
-  useAdapter(adapter: Adapter): this {
+  useAdapter(adapter: BaseAdapter): this {
     this._adapter = adapter;
     return this;
   }
@@ -86,7 +80,7 @@ class DeviceAuthCore {
   }
 
   /** Expose current adapter. Will throw if not configured. */
-  get adapter(): Adapter {
+  get adapter(): BaseAdapter {
     if (!this._adapter) {
       throw new Error('device_auth adapter is not configured. Call deviceAuth.useAdapter().');
     }

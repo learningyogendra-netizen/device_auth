@@ -114,6 +114,19 @@ export class AuthService {
     }
 
     const user = await this.adapter.findUserById(userId);
+
+    if (user) {
+      const mutableUser = user as Record<string, unknown>;
+
+      if (mutableUser['id'] == null) {
+        mutableUser['id'] = userId;
+      }
+
+      if (Object.prototype.hasOwnProperty.call(payload, 'role')) {
+        mutableUser['role'] = payload['role'];
+      }
+    }
+
     return user;
   }
 
@@ -147,8 +160,11 @@ export class AuthService {
       throw new Error('User record does not contain an id field');
     }
 
+    const role = user['role'] ?? null;
+
     const payload: AccessTokenPayload = {
       sub: userId as string | number,
+      role,
     };
 
     return this.tokenService.generateAccessToken(payload);

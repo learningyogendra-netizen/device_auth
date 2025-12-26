@@ -1,25 +1,51 @@
 {
   "name": "device_auth",
   "version": "0.1.0",
-  "description": "authorization package for Node.js",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "description": "Device-based authentication and authorization for Node.js with Prisma and Mongoose adapters",
   "author": "Yogendra Prajapati",
   "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsc",
-    "dev": "ts-node src/deviceAuth.ts"
+    "dev": "ts-node src/deviceAuth.ts",
+    "prepublishOnly": "npm run build"
   },
-  "devDependencies": {
-    "@types/bcrypt": "^6.0.0",
-    "@types/express": "^5.0.6",
-    "@types/jsonwebtoken": "^9.0.10",
-    "dotenv": "^17.2.3",
-    "typescript": "^5.9.3"
+  "keywords": [
+    "authentication",
+    "authorization",
+    "device-auth",
+    "jwt",
+    "nodejs",
+    "express",
+    "prisma",
+    "mongoose"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/learningyogendra-netizen/device_auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/learningyogendra-netizen/device_auth/issues"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
-    "express": "^5.2.1",
-    "jsonwebtoken": "^9.0.3"
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.0.2"
+  },
+  "peerDependencies": {
+    "@prisma/client": "^4.7.1 || ^5.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "@types/express": "^4.17.21",
+    "@types/bcrypt": "^6.0.0",
+    "@types/jsonwebtoken": "^9.0.10"
   }
 }

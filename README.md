@@ -31,16 +31,16 @@ You bring your framework (Express) and database (Mongo, Prisma, SQL). Device Aut
 ## 📦 Installation
 
 ```bash
-npm install device_auth
+npm i node-auth-kit
 ```
 
 or
 
 ```bash
-yarn add device_auth
+yarn add node-auth-kit
 ```
 
-`device_auth` itself is DB-agnostic. Database drivers / ORMs are **optional** and only required if you use the corresponding adapter:
+`node-auth-kit` itself is DB-agnostic. Database drivers / ORMs are **optional** and only required if you use the corresponding adapter:
 
 - For Mongoose adapter: `mongoose`
 - For Prisma adapter (V2): `@prisma/client`
@@ -100,7 +100,7 @@ import {
   createAuthRouter,
   authenticate,
   authorize,
-} from 'node-device-auth';
+} from 'node-auth-kit';
 
 import { User } from './models/User';
 
@@ -221,7 +221,7 @@ The public exports you can use:
 The central entry point is `deviceAuth`:
 
 ```ts
-import { deviceAuth, defaultConfig } from 'device_auth';
+import { deviceAuth, defaultConfig } from 'node-auth-kit';
 
 deviceAuth.init({
   ...defaultConfig,
@@ -267,7 +267,7 @@ Supported hook names:
 Register hooks on `deviceAuth`:
 
 ```ts
-import { deviceAuth } from 'device_auth';
+import { deviceAuth } from 'node-auth-kit';
 
 deviceAuth
   .registerHook('beforeRegister', async (createData) => {

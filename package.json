@@ -1,6 +1,6 @@
 {
-  "name": "node-device-auth",
-  "version": "1.0.2",
+  "name": "node-auth-kit",
+  "version": "1.0.3",
   "description": "Device-based authentication and authorization for Node.js with Prisma and Mongoose adapters",
   "author": "Yogendra Prajapati",
   "license": "MIT",

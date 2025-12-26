@@ -1,5 +1,5 @@
 {
-  "name": "device_auth",
+  "name": "node-device-auth",
   "version": "1.0.0",
   "description": "Device-based authentication and authorization for Node.js with Prisma and Mongoose adapters",
   "author": "Yogendra Prajapati",

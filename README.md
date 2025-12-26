@@ -55,7 +55,7 @@ Create a `.env` file:
 
 ```env
 MONGO_URL=mongodb://localhost:27017/device-auth
-JWT_SECRET=your-super-secret-key
+DEVICE_AUTH_JWT_SECRET=your-super-secret-key
 ```
 
 ### 2️⃣ User Model (Mongoose)
@@ -100,7 +100,7 @@ import {
   createAuthRouter,
   authenticate,
   authorize,
-} from 'device_auth';
+} from 'node-device-auth';
 
 import { User } from './models/User';
 
@@ -109,7 +109,7 @@ app.use(express.json());
 
 // 1. Connect MongoDB
 mongoose
-  .connect(process.env.MONGO_URL as string)
+  .connect(process.env.MONGO_URL)
   .then(() => console.log('MongoDB connected'))
   .catch(console.error);
 
